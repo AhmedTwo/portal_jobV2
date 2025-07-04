@@ -25,36 +25,36 @@
             </div>
 
             <div class="col-md-7">
-                <h3 class="fw-bold mb-3">Description</h3>
+                <h3 class="fw-bold mb-3">DESCRIPTION</h3>
                 <p class="fs-5"><?= $offers["description"] ?></p>
 
-                <h4 class="fw-semibold mt-4">Mission</h4>
+                <h4 class="fw-semibold mt-4">MISSION DEMANDEES</h4>
                 <p class="fs-5"><?= $offers["mission"] ?></p>
 
                 <div class="row mt-4">
                     <div class="col-md-6 mb-3">
-                        <strong>Ville :</strong> <span class="fs-5"><?= $offers["location"] ?></span>
+                        <strong>LIEU :</strong> <span class="fs-5"><?= $offers["location"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Poste :</strong> <span class="fs-5"><?= $offers["category"] ?></span>
+                        <strong>POSTE :</strong> <span class="fs-5"><?= $offers["category"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Entreprise :</strong> <span class="fs-5"><?= $offers["id_company"] ?></span>
+                        <strong>SOCIETE :</strong> <span class="fs-5"><?= $offers["nom_company"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Contrat :</strong> <span class="fs-5"><?= $offers["contrat"] ?></span>
+                        <strong>TYPE DE CONTRAT :</strong> <span class="fs-5"><?= $offers["contrat"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Technologies :</strong> <span class="fs-5"><?= $offers["technologies_used"] ?></span>
+                        <strong>TECHNOLOGIES UTILISEES :</strong> <span class="fs-5"><?= $offers["technologies_used"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Avantages :</strong> <span class="fs-5"><?= $offers["benefits"] ?></span>
+                        <strong>AVANTAGES DU POSTE :</strong> <span class="fs-5"><?= $offers["benefits"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Nombre de candidats :</strong> <span class="fs-5"><?= $offers["participants_count"] ?></span>
+                        <strong>POSTULANTS :</strong> <span class="fs-5"><?= $offers["participants_count"] ?></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Date de création :</strong> <span class="fs-5"><?= date("d/m/Y", strtotime($offers["created_at"])) ?></span>
+                        <strong>DATE DE CREATION :</strong> <span class="fs-5"><?= date("d/m/Y", strtotime($offers["created_at"])) ?></span>
                     </div>
                 </div>
             </div>

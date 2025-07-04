@@ -12,7 +12,7 @@ unset($_SESSION['error']); // supprime la variable de session error juste après
 <div>
     <div>
         <div>
-            <h1>Connexion</h1>
+            <h1>CONNEXION</h1>
             <form action="/includes/connexion.php" method="POST">
                 <div>
                     <label for="inputEmail">Email</label>
@@ -33,7 +33,7 @@ unset($_SESSION['error']); // supprime la variable de session error juste après
                 </div>
                 <div>
                     <p>Vous n'avez pas de compte ? <a href="addUsers.php">Inscription !</a></p>
-                    <p>Vous êtes une Compagnie ? <a href="applyCompany.php">Rejoignez-nous !</a></p>
+                    <p>Vous êtes une Société ? <a href="applyCompany.php">Rejoignez-nous !</a></p>
                 </div>
             </form>
         </div>

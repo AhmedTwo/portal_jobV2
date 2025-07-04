@@ -26,7 +26,7 @@
                     </li>
 
                     <li>
-                        <a <?php echo !empty($company) ? "active" : "" ?> href="company.php">NOS COMPAGNIES</a>
+                        <a <?php echo !empty($company) ? "active" : "" ?> href="company.php">NOS SOCIETEES</a>
                     </li>
 
                     <?php if (isset($_SESSION['new_role']) && $_SESSION['new_role'] === 'admin'): ?>

@@ -1,6 +1,6 @@
 <div>
 
-    <h1>Détail de la compagnie</h1>
+    <h1>DETAILS DE LA SOCIETE</h1>
 
     <?php
     if (!isset($_GET['id']) || !is_numeric($_GET['id'])) { // !is_numeric ???

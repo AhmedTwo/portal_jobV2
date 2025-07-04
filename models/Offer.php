@@ -84,9 +84,10 @@ class Offer
     public function findById($pdo, $id)
     {
         $sql = "
-    SELECT job_offers.*, e.name AS contrat 
+    SELECT job_offers.*, e.name AS contrat, c.name AS nom_company
     FROM job_offers
     JOIN employment_type e ON job_offers.employment_type_id = e.id
+    JOIN company c ON job_offers.id_company = c.id
     WHERE job_offers.id = :id
     ";
         $pdostmt = $pdo->prepare($sql);

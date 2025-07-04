@@ -23,6 +23,11 @@
                     <td><?= htmlspecialchars($user['password']) ?></td>
                     <td><?= htmlspecialchars($user['role']) ?></td>
                     <td>
+                    <a href="OfferDetails.php?id=<?= $user['id'] ?>" title="Détails">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                            </svg>
+                        </a>
                         <a href="updateUser.php?idU=<?= $user['id'] ?>" title="Modifier">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -70,6 +75,11 @@
                     <td><?= htmlspecialchars($offer['category']) ?></td>
                     <td><?= htmlspecialchars($offer['created_at']) ?></td>
                     <td>
+                    <a href="OfferDetails.php?id=<?= $offer['id'] ?>" title="Détails">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                            </svg>
+                        </a>
                         <a href="updateOffer.php?idO=<?= $offer['id'] ?>" title="Modifier">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -117,6 +127,11 @@
                     <td><?= htmlspecialchars($comapny['industry']) ?></td>
                     <td><?= htmlspecialchars($comapny['n_siret']) ?></td>
                     <td>
+                    <a href="OfferDetails.php?id=<?= $company['id'] ?>" title="Détails">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                            </svg>
+                        </a>
                         <a href="updateCompany.php?idC=<?= $comapny['id'] ?>" title="Modifier">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">

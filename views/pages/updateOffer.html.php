@@ -67,9 +67,11 @@
                     <input type="date" name="inputDateCreation" id="inputDateCreation" required min="<?= date('Y-m-d') ?>">
                 </div>
 
+                <?php $isAdmin = isset($_SESSION['new_role']) && $_SESSION['new_role'] === 'admin';?>
                 <div>
+                <!-- le rendre disable pour autre que l'admin -->
                     <label for="inputImage">Image (URL)</label>
-                    <input type="text" name="inputImage" id="inputImage" value="<?= $row['image_url'] ?>">
+                    <input type="text" name="inputImage" id="inputImage" value="<?= $row['image_url'] ?>" <?= $isAdmin ? '' : 'disabled' ?>>
                 </div>
 
                 <div>

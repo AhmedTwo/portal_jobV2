@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -7,17 +7,36 @@ use PHPMailer\PHPMailer\Exception;
 require_once dirname(__DIR__) . '/config/database.php';
 require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/models/Offer.php';
+require dirname(__DIR__) . '/models/Users.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    // definir sa variable avant de l'utiliser
+    // on converti sa valeur en entier et on l'assigne à l'id sinon mettre null
+    // sa evite une erreur du type : Undefined array key 'id'.
+    $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+
+    // on verifie sa validité
+    if (!$id) {
+        die("ID de l'offre manquant !");
+    }
+
+    if (!isset($_SESSION['new_id'])) {
+        die('Vous devez être connecté pour postuler.');
+    }
+    
+    // on récupère l’id utilisateur
+    $user_id = $_SESSION['new_id'];
 
     $apply = new Offer();
     $offerApply = $apply->offerApply($pdo, $id);
-    $offerApply = $apply->moreOne($pdo);
 
-    if (!$offerApply) {
-        die("Offre non trouvée !");
+    $user = new Users();
+    $userApply = $user->readProfil($pdo, $user_id);
+
+    if (!$offerApply || !$userApply) {
+        die("Erreur lors de la récupération des données !");
     }
 
     // Gestion des fichiers uploadés
@@ -26,19 +45,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Construction correcte du message
     $message = "
-    Bonjour {$_POST['inputPrenom']} {$_POST['inputNom']},
+    Bonjour {$userApply['nom']} {$userApply['prenom']},
 
     Votre candidature à l'offre suivante : {$offerApply['title']}
     Venant de l'entreprise suivante : {$offerApply['company_name']}
 
     A bien été reçue. Voici un récapitulatif des informations que vous avez transmises :
 
-    NOM : {$_POST['inputNom']}
-    PRÉNOM : {$_POST['inputPrenom']}
-    VILLE : {$_POST['inputVille']}
-    CODE POSTAL : {$_POST['inputZipcode']}
-    TÉLÉPHONE : {$_POST['inputTelephone']}
-    EMAIL : {$_POST['inputEmail']}
+    NOM : {$userApply['nom']}
+    PRÉNOM : {$userApply['prenom']}
+    VILLE : {$userApply['ville']}
+    CODE POSTAL : {$userApply['code_postal']}
+    TÉLÉPHONE : {$userApply['telephone']}
+    EMAIL : {$userApply['email']}
 
     MOTIVATION :
     {$_POST['inputMotivation']}
@@ -65,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Port = 587;
 
         // Infos mail
-        $mail->setFrom($_POST['inputEmail'], $_POST['inputNom'] . ' ' . $_POST['inputPrenom']);
+        $mail->setFrom($userApply['email'], $userApply['nom'] . ' ' . $userApply['prenom']);
         $mail->addAddress('ajc95ajc@gmail.com'); // adresse destinataire
         $mail->CharSet = 'UTF-8';
         $mail->Encoding = 'base64';

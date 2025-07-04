@@ -1,11 +1,11 @@
 <div>
     <br>
     <br>
-    <h1>Ajout d'une nouvelle Compagnie</h1>
+    <h1>AJOUT D'UNE NOUVELLE SOCIETE</h1>
 
     <form method="POST" action="../../includes/traitement_formulaire.php">
         <div>
-            <label for="inputNom">NOM</label>
+            <label for="inputNom">NOM DE LA SOCIETE</label>
             <input type="text" id="inputNom" name="inputNom" required>
         </div>
         <div>
@@ -17,7 +17,7 @@
             <input type="text" id="inputDomaine" name="inputDomaine" required>
         </div>
         <div>
-            <label for="inputAdresse">ADRESSE</label>
+            <label for="inputAdresse">ADRESSE POSTALE</label>
             <input type="text" id="inputAdresse" name="inputAdresse" required>
         </div>
         <div>
@@ -29,7 +29,7 @@
             <input type="text" id="inputLongitude" name="inputLongitude" required>
         </div>
         <div>
-            <label for="inputDescription">DESCRIPTION</label>
+            <label for="inputDescription">DESCRIPTIF</label>
             <input type="text" id="inputDescription" name="inputDescription" required>
         </div>
         <div>
@@ -41,7 +41,7 @@
             <input type="text" id="inputSiret" name="inputSiret" required>
         </div>
         <div>
-            <label for="inputLogo">LOGO</label>
+            <label for="inputLogo">LIEN DU LOGO</label>
             <input type="text" id="inputLogo" name="inputLogo" required>
         </div>
         <div>

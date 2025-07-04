@@ -49,6 +49,14 @@ class Users
         $this->id = $id;
     }
 
+    public function findAll($pdo)
+    {
+        $sql = "SELECT * FROM users";
+        $pdostmt = $pdo->prepare($sql);
+        $pdostmt->execute();
+        return $pdostmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function addUsers($pdo)
     {
         $query = '
@@ -88,14 +96,6 @@ class Users
         $stmt->execute([':id' => $id]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function findAll($pdo)
-    {
-        $sql = "SELECT * FROM users";
-        $pdostmt = $pdo->prepare($sql);
-        $pdostmt->execute();
-        return $pdostmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function UpdateUser($pdo)

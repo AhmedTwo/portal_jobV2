@@ -1,5 +1,5 @@
 <div>
-    <h1>Ajout d'une nouvelle Compagnie</h1>
+    <h1>AJOUT D'UNE NOUVELLE SOCIETE</h1>
 
     <form method="POST">
         <div>

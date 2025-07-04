@@ -121,7 +121,7 @@ class UserController
 
                 if ($user->addUsers($pdo)) {
                     // Redirection vers la page connexion
-                    header("Location: /index.php");
+                    header("Location: /connexion.php");
                     exit;
                 } else {
                     echo "Erreur lors de l'ajout de l'utilisateur.";
