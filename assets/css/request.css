@@ -1,0 +1,314 @@
+/* request.css */
+
+/* ==============================
+   Variables CSS
+============================== */
+:root {
+    --primary: #007bff;
+    --primary-dark: #0056b3;
+    --danger: #dc3545;
+    --success: #198754;
+    --bg: #f9fafb;
+    --card-bg: #fff;
+    --card-shadow: rgba(0,0,0,0.12);
+    --card-shadow-hover: rgba(0,0,0,0.18);
+    --border-radius: 6px;
+}
+
+/* ==============================
+   Headings
+============================== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-content {
+    background-color: var(--bg);
+    color: black;
+    padding: 0 1rem;
+    min-height: calc(100vh - 80px); /* hauteur approximative du footer */
+}
+
+h1 {
+    margin-top: 7%;
+    text-align: center;
+    color: black;
+}
+
+/* ==============================
+   Bouton Ajouter une demande
+============================== */
+.btn-add-request {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-add-request:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-add-request:focus {
+    outline: 2px solid var(--primary-dark);
+    outline-offset: 2px;
+}
+
+.btn-add-request svg {
+    fill: currentColor;
+}
+
+/* ==============================
+   Container des cards
+============================== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* ==============================
+   Card
+============================== */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--card-shadow-hover);
+    cursor: pointer;
+}
+
+/* ==============================
+   Card Header: Photo + Nom
+============================== */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 15px;
+}
+
+.user-photo img, .no-photo {
+    width: 70px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-photo img {
+    border: 2px solid var(--primary);
+    background-color: #e9ecef;
+}
+
+.no-photo {
+    background-color: #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* ==============================
+   Card Content
+============================== */
+.card-content p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.card-content strong {
+    color: #2c3e50;
+}
+
+/* ==============================
+   Card Actions
+============================== */
+.card-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* ==============================
+   Boutons Supprimer & Toggle
+============================== */
+.btn-delete, .btn-toggle {
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--border-radius);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-delete {
+    background: rgba(255, 0, 0, 0.288);
+    color: var(--danger);
+}
+
+.btn-delete:hover {
+    background-color: rgba(247, 9, 32, 0.932);
+    color: #f5f0f1;
+    transform: scale(1.1);
+}
+
+.btn-delete:focus {
+    outline: 2px solid var(--danger);
+    outline-offset: 2px;
+}
+
+.btn-toggle {
+    background: rgba(0, 128, 0, 0.288);
+    color: var(--success);
+}
+
+.btn-toggle:hover {
+    background-color: rgba(62, 238, 27, 0.979);
+    color: #070707;
+    transform: scale(1.1);
+}
+
+.btn-toggle:focus {
+    outline: 2px solid var(--success);
+    outline-offset: 2px;
+}
+
+/* ==============================
+   Admin Add Request Button
+============================== */
+.admin-add-request {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.admin-add-request svg {
+    transition: 0.3s;
+}
+
+.admin-add-request:hover svg {
+    transform: rotate(90deg);
+}
+
+.admin-add-request .btn-outline-primary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--border-radius);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-add-request .btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    text-decoration: none;
+}
+
+.admin-add-request .btn-outline-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
+}
+
+/* responsive fait par chat gpt car je ne connais et comprends pas */
+/* ==============================
+   Responsive
+============================== */
+
+/* Pour tablettes et petits écrans */
+@media (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .btn-add-request {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-top: 5%;
+    }
+}
+
+/* Pour téléphones */
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr; /* une colonne */
+        gap: 16px;
+    }
+
+    .btn-add-request {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-top: 4%;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .card-actions {
+        justify-content: center;
+    }
+}

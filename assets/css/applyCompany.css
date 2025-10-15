@@ -1,0 +1,93 @@
+/* Général */
+body {
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Conteneur principal */
+  #containerFirst {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8%;
+}
+
+/* Titre */
+.h1AddCompany {
+    text-align: center;
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 2rem;
+}
+
+/* Formulaire */
+#containerSecond {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border: 1px solid black;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.637);
+    width: 60%;          /*  élargi à 60% pour 2 colonnes */
+    max-width: 800px;    /*  plus grand max */
+    margin-top: 3%;
+}
+  
+  #addCompanyForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .divAdd {
+    flex: 1 1 calc(50% - 1rem); /* 2 champs par ligne */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .divAdd label {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: black;
+  }
+  
+  .divAdd input {
+    padding: 0.5rem 0;
+    border: 1px solid rgba(0, 0, 0, 0.671);
+    border-radius: 5px;
+  }
+  
+  .divAdd input:focus {
+    border-color: #007BFF;
+    outline: none; /* ca supprime le contour du focus ajouté par le navigateur. */
+  }
+  
+  /* 🟢Les éléments qui doivent prendre toute la largeur */
+  .divAdd.radio-box,
+  .divAdd:last-of-type,
+  .btn {
+    flex: 1 1 100%;
+  }
+
+  /* Bouton */
+.btn {
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+  }
+  
+  .btn:hover {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  #button:hover {
+      background-color: #0056b3;
+  }

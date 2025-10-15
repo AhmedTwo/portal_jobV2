@@ -1,0 +1,42 @@
+# Authentification & Session
+POST   /auth/login            # Connexion
+POST   /auth/register         # Inscription
+POST   /auth/logout           # Déconnexion
+
+# Utilisateur
+GET    /users/me              # Voir le profil connecté
+PUT    /users/me              # Mise à jour de son profil
+PUT    /users/:id             # Mise à jour d’un utilisateur (admin)
+DELETE /users/:id             # Suppression d’un utilisateur (admin)
+
+# Offres d’emploi
+GET    /accueil               # Liste des 3 dernieres offres
+GET    /offers                # Liste des offres
+GET    /offers/:id            # Détails d'une offre
+POST   /offers                # Ajouter une offre
+PUT    /offers/:id            # Modifier une offre
+DELETE /offers/:id            # Supprimer une offre
+POST   /offers/:id/apply      # Candidature à une offre
+
+# Entreprises
+GET    /companies             # Liste des entreprises
+GET    /companies/:id         # Détails d'une entreprise
+POST   /companies             # Ajouter une entreprise
+PUT    /companies/:id         # Modifier une entreprise
+DELETE /companies/:id         # Supprimer une entreprise
+POST   /companies/:id/apply   # Demande de rattachement à une entreprise
+
+# Requêtes spécifiques (demandes)
+POST   /requests              # Ajouter une demande
+
+# Dashboard (admin)
+GET    /dashboard/companies/:id        # Voir les détails d’une entreprise
+PUT    /dashboard/companies/:id        # Modifier une entreprise
+GET    /dashboard/offers/:id           # Voir les détails d’une offre
+PUT    /dashboard/offers/:id           # Modifier une offre
+PUT    /dashboard/users/:id            # Modifier un utilisateur
+
+# Contact
+POST   /contact               # Envoyer un message de contact
+
+

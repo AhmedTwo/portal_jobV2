@@ -1,0 +1,166 @@
+/* accueil.css - version compacte et sécurisée par rapport au footer */
+
+/* Général */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Assure que le footer reste en bas */
+    display: flex;
+    flex-direction: column;
+}
+
+.alert {
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin: 15px auto;
+    width: 80%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+main {
+    flex: 1; /* Remplit l'espace avant le footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+/* Titres */
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    color: black;
+    font-size: 2.3rem;
+}
+
+.p {
+    text-align: center;
+    color: blue;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Container des offres */
+.offer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin: 0 15px 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 10px 8px 18px rgba(0, 0, 0, 0.575); /* comme si il flotte */
+    transition: transform 0.5s;
+    overflow-y: auto; /* scroll si contenu trop long */
+    max-height: 400px; /* limite la longueur des blocs */
+    width: 65%;
+}
+
+.offer-row:hover {
+    transform: translateY(-3px);
+}
+
+/* Carte de l'offre */
+.offer-card {
+    flex: 1 1 200px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    height: 100%;
+}
+
+.offer-card img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    height: 120px;
+}
+
+.apply-section {
+    margin-top: auto;
+}
+
+.apply-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.25s, transform 0.2s;
+}
+
+.apply-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Détails de l'offre */
+.offer-details {
+    display: flex;
+    flex-direction: column; /* empile verticalement les informations */
+    flex: 2 1 300px; /* prend plus d'espace que l'image */
+    padding: 15px;
+    gap: 6px; /* espace entre chaque detail-item */
+}
+
+.offer-details h3 {
+    margin-top: 0;
+    color: black;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Chaque ligne de détail */
+.detail-item {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #2c3e50;
+}
+
+.detail-item strong {
+    color: black;
+}
+
+/* Bouton cœur (favoris) */
+.btn-heart {
+    text-decoration: none;
+    color: #ccc;
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .offer-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .offer-details,
+    .offer-card {
+        width: 90%;
+        max-height: none; /* plus besoin de limiter sur mobile */
+    }
+}
+
+/* Pour éviter que le footer chevauche le contenu */
+body::after {
+    content: "";
+    display: block;
+    height: 80px; /* hauteur approximative du footer */
+}

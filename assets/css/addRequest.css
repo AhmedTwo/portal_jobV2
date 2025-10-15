@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    background-color: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* Chaque groupe label + champ */
+form > div {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label */
+label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Inputs, textarea, select */
+input[type="text"],
+textarea,
+select {
+    padding: 0.7rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0,123,255,0.4);
+}
+
+/* Textarea specifics */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Bouton */
+.button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* responsive fait par chat gpt car je ne connais et comprends pas */
+
+@media (max-width: 600px) {
+  form {
+    padding: 1.5rem 1rem; /* réduit les marges internes */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* titre un peu plus petit */
+    margin-top: 3rem; /* espace réduit en haut */
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    font-size: 0.95rem; /* texte un peu plus petit */
+  }
+
+  .button[type="submit"] {
+    width: 100%; /* bouton prend toute la largeur */
+  }
+}

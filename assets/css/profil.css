@@ -1,0 +1,167 @@
+/* Profil - Page stylée */
+
+/* Import d'une belle police */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Container */
+.profil-container {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 2rem 2rem;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 6%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+.profil-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Image profil */
+.profil-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+.profil-photo:hover {
+    transform: scale(1.05);
+}
+
+/* Infos */
+.profil-info h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.profil-info p {
+    font-size: 1.05rem;
+    margin: 0.5rem 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+.profil-info span {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+/* Lien CV */
+.profil-info a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #0d6efd;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-decoration: underline;
+}
+.profil-info a:hover {
+    color: #0a58ca;
+}
+
+/* Bouton Modifier */
+.profil-actions {
+    margin-top: 2rem;
+}
+.btn-edit-profil {
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    color: #fff;
+    padding: 10px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+.btn-edit-profil:hover {
+    background: linear-gradient(135deg, #0a58ca, #0942a1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13, 110, 253, 0.45);
+}
+
+/* responsive fait par chat gpt car je ne connais et comprends pas */
+
+@media (max-width: 1024px) {
+  .profil-container {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .profil-photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .profil-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .profil-info p {
+    font-size: 1rem;
+  }
+
+  .btn-edit-profil {
+    padding: 8px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profil-container {
+    width: 90%;
+    margin-top: 4%;
+    padding: 1.2rem 1.2rem;
+  }
+
+  .profil-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profil-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .profil-info p {
+    font-size: 0.95rem;
+  }
+
+  .btn-edit-profil {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .profil-container {
+    padding: 1rem;
+  }
+
+  .profil-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profil-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .profil-info p {
+    font-size: 0.9rem;
+  }
+
+  .btn-edit-profil {
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+}
