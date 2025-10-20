@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="/assets/css/offerCompany.css">
 
+<?php
+
+$role = $_SESSION['new_role'] ?? null;
+?>
+
 <div class="container">
     <br><br><br><br><br>
 
@@ -48,7 +53,9 @@
                 <th>TITRE</th>
                 <th>CONTRAT</th>
                 <th>IMAGE</th>
+                <?php if ($role === 'client' || $role === 'admin'): ?>
                 <th>ACTION</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -57,14 +64,15 @@
                     <td><?= $ligne['title'] ?></td>
                     <td><?= $ligne['contrat'] ?></td>
                     <td>
-                        <img src="<?= $ligne['image_url'] ?>" width="200" alt="Image de l'offre">
+                        <img src="<?= $ligne['image_url'] ?>" alt="Image de l'offre">
                     </td>
-                    <td>
-                        <!-- le premier / est important pour indiquer un chemin absolu -->
-                        <a href="/offers/offerDetails/<?= $ligne['id'] ?>" title="Voir les détails">
-                            Voir détail
-                        </a>
-                    </td>
+                    <?php if ($role === 'client' || $role === 'admin'): ?>
+                        <td>
+                            <a href="/accueil/apply?id=<?= $ligne["id"] ?>" class="apply-btn">
+                                Postuler à l'offre
+                            </a>
+                        </td>
+                            <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
 

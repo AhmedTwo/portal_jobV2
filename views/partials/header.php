@@ -33,7 +33,7 @@ $initiale = $prenom ? strtoupper(substr($prenom, 0, 1)) : '?'; // afin de recup 
 
             <!-- Admin -->
             <?php if ($role === 'admin'): ?>
-                <li>
+                <li class="dropdown">
                     <a href="#">Administration ▾</a>
                     <ul class="dropdown-content">
                         <li><a href="/dashboard" class="<?= $activePage === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
@@ -67,9 +67,9 @@ $initiale = $prenom ? strtoupper(substr($prenom, 0, 1)) : '?'; // afin de recup 
                         <label for="user-toggle" class="user-circle"><?= $initiale ?></label>
 
                         <ul class="user-menu">
-                        <?php if ($role === 'client'): ?>
-                            <li><a href="/favoris">Favoris</a></li>
-                        <?php endif; ?>
+                            <?php if ($role === 'client'): ?>
+                                <li><a href="/favoris">Favoris</a></li>
+                            <?php endif; ?>
                             <li><a href="/profil">Profil</a></li>
                             <li><a href="/contact">Contact</a></li>
                             <hr>

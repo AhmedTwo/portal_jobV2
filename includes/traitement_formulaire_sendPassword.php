@@ -22,11 +22,11 @@ function sendPassword(string $email, string $password): void
         Voici désormais vos identifiants pour Portal_Job :<br>
         Je vous invite à les garder précieusement !<br><br>
         <strong>EMAIL :</strong> {$email}<br>
-        <strong>MOT DE PASSE :</strong> {$password}<br>
+        <strong>MOT DE PASSE :</strong> {$password}<br><br>
         Cordialement,<br>
         L'équipe Portal_Job.
         ";
-    
+
 
     $mail = new PHPMailer(true);
 
@@ -38,8 +38,8 @@ function sendPassword(string $email, string $password): void
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'ajc95ajc@gmail.com';
-        $mail->Password = 'csyc eevh mqki ozbw';       
+        $mail->Username = 'seghiriahmed9@gmail.com';
+        $mail->Password = 'nbjplfluxfyrjken';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -52,7 +52,7 @@ function sendPassword(string $email, string $password): void
             )
         );
 
-        $mail->setFrom('ajc95ajc@gmail.com', 'Portal_Job');
+        $mail->setFrom('seghiriahmed9@gmail.com', 'Portal_Job');
         $mail->addAddress($email); // mail du formulaire
         // $mail->addAddress('seghiriahmed9@gmail.com'); // mail brut
         $mail->isHTML(true);
@@ -64,7 +64,6 @@ function sendPassword(string $email, string $password): void
         echo "<div class='alert alert-success text-center'>Votre demande a été envoyée avec succès!</div>";
         header("Location: /connexion");
         exit;
-        
     } catch (Exception $e) {
         echo "<div class='alert alert-danger text-center'>Erreur lors de l'envoi du mail : {$mail->ErrorInfo}</div>";
     }

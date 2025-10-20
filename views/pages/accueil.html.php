@@ -25,6 +25,7 @@ $favoriteModel = new Favorite();
             <!-- Carte de l'offre (à gauche) -->
             <div class="offer-card">
                 <?php if (!empty($offer["image_url"])): ?>
+                    <h3>IMAGE OFFRE</h3>
                     <img src="<?= htmlspecialchars($offer["image_url"]) ?>" alt="Image offre">
                 <?php endif; ?>
 

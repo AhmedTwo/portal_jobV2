@@ -170,7 +170,7 @@ if ($segment[0] == "offers") {
     // - un 3ème segment d'URL existe (ex: /offers/offerDetails/apply → $segment[2] = "apply")
     // - le 2ème segment est "offerDetails"
     // - et le 3ème segment est "apply"
-    if (isset($segment[2]) && $segment[1] == "offerDetails" && $segment[2] == "apply") {
+    if (isset($segment[1]) && $segment[1] == "apply") {
         // Vérifie si la variable ou l'index existe ET qu'il n'est pas null.
         // Exemple : isset($segment[2]) renvoie true seulement si $segment[2] est défini et contient une valeur différente de null (évite les erreurs "Undefined index").
 

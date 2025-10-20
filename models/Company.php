@@ -45,9 +45,9 @@ class Company
 
     public function findOne($email)
     {
-        $query = "SELECT * FROM company WHERE email = :email";
+        $query = "SELECT * FROM company WHERE email_company = :email_company";
         $pdostmt = $this->pdo->prepare($query);
-        $pdostmt->execute(['email' => $email]);
+        $pdostmt->execute(['email_company' => $email]);
         return $pdostmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -105,20 +105,9 @@ class Company
 
     public function getCompanyIdByUserId($userId)
     {
-        // On prépare une requête SQL pour aller chercher la colonne company_id
-        // dans la table users en fonction de l'id du user connecté
         $sql = "SELECT company_id FROM users WHERE id = :id";
-
-        // On prépare la requête avec PDO (sécurisé, évite les injections SQL)
         $pdostmt = $this->pdo->prepare($sql);
-
-        // On exécute la requête en liant la valeur du paramètre :id
-        // Ici on associe :id au $userId qu’on a reçu en paramètre
-        $pdostmt->execute(['id' => $userId]);
-
-        // On récupère uniquement la première colonne du premier résultat
-        // Comme la requête SELECT company_id ne retourne qu'une seule colonne
-        // (company_id), fetchColumn() renvoie directement cette valeur
+        $pdostmt->execute([':id' => $userId]);
         return $pdostmt->fetchColumn();
     }
 

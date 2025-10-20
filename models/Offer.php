@@ -233,6 +233,12 @@ class Offer
         return $pdostmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function incrementParticipant ($id) {
+        $query = "UPDATE job_offers SET participants_count = participants_count + 1 WHERE id = :id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([':id' => $id]);
+    }
+
     public function moreOne()
     {
 

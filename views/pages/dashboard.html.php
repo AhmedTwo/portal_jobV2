@@ -1,18 +1,17 @@
 <link rel="stylesheet" href="/assets/css/dashboard.css">
 
-<br><br><br><br>
+<h1>MON TABLEAU DE BORD</h1>
 <div class="table-container">
     <table id="table-users">
-        <h1 class="table-users-h1">LES UTILISATEURS</h1>
+        <h1>LES UTILISATEURS</h1>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>NOM</th>
                 <th>PRENOM</th>
                 <th>EMAIL</th>
-                <th>MOT DE PASSE</th>
                 <th>RÔLE</th>
-                <th>Actions</th>
+                <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +21,6 @@
                     <td><?= htmlspecialchars($user['nom']) ?></td>
                     <td><?= htmlspecialchars($user['prenom']) ?></td>
                     <td><?= htmlspecialchars($user['email']) ?></td>
-                    <td><?= htmlspecialchars($user['password']) ?></td>
                     <td><?= htmlspecialchars($user['role']) ?></td>
                     <td>
                         <a href="/dashboard/updateUser/<?= $user['id'] ?>" title="Modifier">
@@ -48,7 +46,6 @@
         </tbody>
     </table>
 </div>
-<button class="voir-plus" data-target="users">Voir plus</button>
 
 <div class="table-container">
     <table id="table-offers">
@@ -103,7 +100,6 @@
         </tbody>
     </table>
 </div>
-<button class="voir-plus" data-target="offers">Voir plus</button>
 
 <div class="table-container">
     <table id="table-companies">
@@ -167,67 +163,3 @@
         </tbody>
     </table>
 </div>
-<button class="voir-plus" data-target="companies">Voir plus</button>
-
-<script>
-    // Attend que le DOM soit complètement chargé avant d'exécuter le code
-    document.addEventListener("DOMContentLoaded", () => {
-
-        // Tableau de configuration pour gérer les 3 tableaux : users, offers et companies
-        const config = [{
-                id: "table-users", // ID du tableau HTML pour les utilisateurs
-                buttonTarget: "users" // Attribut data-target du bouton "voir plus" correspondant
-            },
-            {
-                id: "table-offers", // ID du tableau HTML pour les offres
-                buttonTarget: "offers"
-            },
-            {
-                id: "table-companies", // ID du tableau HTML pour les entreprises
-                buttonTarget: "companies"
-            }
-        ];
-
-        // Boucle sur chaque configuration pour initialiser le comportement "voir plus"
-        config.forEach(({
-            id,
-            buttonTarget
-        }) => {
-
-            // Récupère le tableau correspondant à l'ID
-            const table = document.getElementById(id);
-            if (!table) return; // Si le tableau n'existe pas, on arrête cette itération
-
-            // Récupère toutes les lignes de ce tableau (dans tbody)
-            const rows = Array.from(table.querySelectorAll("tbody tr"));
-
-            // Récupère le bouton "voir plus" qui correspond à ce tableau via data-target
-            const btn = document.querySelector(`.voir-plus[data-target="${buttonTarget}"]`);
-
-            // Nombre initial de lignes visibles
-            let visibleCount = 4;
-
-            // Fonction pour afficher uniquement les lignes visibles
-            const updateVisibility = () => {
-                rows.forEach((row, index) => {
-                    // Affiche les lignes dont l’index est inférieur à visibleCount
-                    row.style.display = index < visibleCount ? "table-row" : "none";
-                });
-
-                // Cache le bouton si toutes les lignes sont déjà affichées
-                if (visibleCount >= rows.length) {
-                    btn.style.display = "none";
-                }
-            };
-
-            // Exécute une première fois pour cacher les lignes en trop
-            updateVisibility();
-
-            // Quand on clique sur "voir plus", on augmente le nombre de lignes visibles
-            btn.addEventListener("click", () => {
-                visibleCount += 4; // Affiche 4 lignes de plus à chaque clic
-                updateVisibility(); // Met à jour l'affichage des lignes
-            });
-        });
-    });
-</script>

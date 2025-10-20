@@ -1,42 +1,31 @@
 <?php
 
-// Vérifie si une session PHP n'a pas encore été démarrée
 if (session_status() === PHP_SESSION_NONE) {
-
-    // Si aucune session active, démarre une nouvelle session
     session_start();
 }
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Chemins corrects avec __DIR__ pour éviter les problèmes de chemins relatifs
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 require_once dirname(__DIR__) . '/models/Offer.php';
 require_once dirname(__DIR__) . '/models/User.php';
+require_once dirname(__DIR__) . '/models/Company.php';
 
 function sendEmail(int $id): void
 {
-    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-        return; // sécurité : on ne traite que du POST
-    }
-
-    if (!$id || $id <= 0) {
-        die("ID de l'offre invalide !");
-    }
-
-    // Vérifier que l'utilisateur est connecté
     if (!isset($_SESSION['new_id'])) {
         die('Vous devez être connecté pour postuler.');
     }
 
     $user_id = (int) $_SESSION['new_id'];
 
-    // Récupérer l'offre
     $offerModel = new Offer();
     $offerApply = $offerModel->offerApply($id);
 
-    // Récupérer les infos utilisateur
+    // var_dump($offerApply);
+    // exit;
+
     $userModel = new User();
     $userApply = $userModel->readProfil($user_id);
 
@@ -44,17 +33,26 @@ function sendEmail(int $id): void
         die("Erreur lors de la récupération des données !");
     }
 
-    // Gestion du fichier uploadé
-    $lettre_file = $_FILES['inputLettre']['name'] ?? 'Non fourni';
+    // 🔸 On récupère ici l’email de la company depuis l’offre
+    $companyModel = new Company();
+    $company = $companyModel->findById($offerApply['id_company']);
 
-    // Construire le message
-    $message = "
+    $companyEmail = $company['email_company'] ?? null;
+
+    if (!$companyEmail) {
+        die("Email de l'entreprise introuvable !");
+    }
+
+    // Gestion du fichier uploadé
+    $cv_file = $userApply['cv_pdf'] ?? 'Non fourni';
+
+    $messageExpediteur = "
             Bonjour {$userApply['nom']} {$userApply['prenom']},
 
-            Votre candidature à l'offre suivante : {$offerApply['title']}
+            Votre candidature à l'offre suivante : {$offerApply['title']} a été envoyé à 
             Entreprise : {$offerApply['company_name']}
 
-            Informations transmises :
+            Les informations transmises :
             NOM : {$userApply['nom']}
             PRÉNOM : {$userApply['prenom']}
             VILLE : {$userApply['ville']}
@@ -62,45 +60,66 @@ function sendEmail(int $id): void
             TÉLÉPHONE : {$userApply['telephone']}
             EMAIL : {$userApply['email']}
 
-            MOTIVATION :
+            LETTRE DE MOTIVATION ÉCRITE :
             {$_POST['inputMotivation']}
 
-            LETTRE DE MOTIVATION : {$lettre_file}
-            CV : {$userApply['cv_pdf']}
+            CV : {$cv_file}
 
-            Notre équipe étudiera attentivement votre dossier et vous contactera si votre profil correspond à nos attentes.
+            Notre équipe Portal_Job étudiera attentivement votre dossier.
 
             Cordialement,
-            L'équipe Recrutement
+            L'équipe Portal_Job
             ";
 
-    $mail = new PHPMailer(true);
+    $messageCompany =
+        "
+                Bonjour {$company['name']},
 
+                Le candidat {$userApply['nom']} {$userApply['prenom']} a postulé à votre offre : {$offerApply['title']}.
+
+                Informations le concernant :
+
+                NOM : {$userApply['nom']}
+                PRÉNOM : {$userApply['prenom']}
+                VILLE : {$userApply['ville']}
+                CODE POSTAL : {$userApply['code_postal']}
+                TÉLÉPHONE : {$userApply['telephone']}
+                EMAIL : {$userApply['email']}
+
+                LETTRE DE MOTIVATION ÉCRITE :
+                {$_POST['inputMotivation']}
+
+                CV : {$cv_file}
+
+                Cordialement,
+                L'équipe Portal_Job
+            ";
+
+    $mailExp = new PHPMailer(true); // envoi du mail a celui qui est co
     try {
-        // Configuration SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'ajc95ajc@gmail.com';
-        $mail->Password = 'csyc eevh mqki ozbw'; // ⚠️ mettre en variable d'environnement !
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mailExp->isSMTP();
+        $mailExp->Host = 'smtp.gmail.com';
+        $mailExp->SMTPAuth = true;
+        $mailExp->Username = 'seghiriahmed9@gmail.com';
+        $mailExp->Password = 'nbjplfluxfyrjken'; // mot de passe d’application Gmail
+        $mailExp->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mailExp->Port = 465;
+        $mailExp->CharSet = 'UTF-8';
+        $mailExp->Encoding = 'base64';
 
-        // Infos expéditeur/destinataire
-        $mail->setFrom($userApply['email'], $userApply['nom'] . ' ' . $userApply['prenom']);
-        $mail->addAddress('ajc95ajc@gmail.com');
-        $mail->CharSet = 'UTF-8';
-        $mail->Encoding = 'base64';
-        $mail->Subject = "Candidature pour l'offre: {$offerApply['title']}";
-        $mail->Body = $message;
+        $mailExp->setFrom($userApply['email'], $userApply['nom'] . ' ' . $userApply['prenom']);
+        $mailExp->addAddress($_SESSION['new_email']); // destinataire : utilisateur
+        $mailExp->Subject = "Votre candidature pour l'offre : {$offerApply['title']}";
+        $mailExp->Body = $messageExpediteur;
 
-        // Pièce jointe : lettre de motivation
-        if (!empty($_FILES['inputLettre']['tmp_name']) && $_FILES['inputLettre']['error'] === 0) {
-            $mail->addAttachment($_FILES['inputLettre']['tmp_name'], $_FILES['inputLettre']['name']);
+        // ✅ Ajouter le CV en pièce jointe si présent
+        if (!empty($userApply['cv_pdf']) && file_exists(__DIR__ . '/../uploads/cv/' . $userApply['cv_pdf'])) {
+            $mailExp->addAttachment(__DIR__ . '/../uploads/cv/' . $userApply['cv_pdf'], 'CV_' . $userApply['nom'] . '.pdf');
         }
+        // file_exists() vérifie que le fichier existe réellement sur ton serveur.
+        // addAttachment() permet de joindre le fichier au mail. Le deuxième paramètre est le nom sous lequel il apparaîtra pour le destinataire.
 
-        // Options SSL
-        $mail->SMTPOptions = [
+        $mailExp->SMTPOptions = [
             'ssl' => [
                 'verify_peer' => false,
                 'verify_peer_name' => false,
@@ -108,12 +127,49 @@ function sendEmail(int $id): void
             ]
         ];
 
-        // Envoi
-        $mail->send();
-
-        echo "<div class='alert alert-success text-center'>Votre candidature a été envoyée avec succès!</div>";
-        echo '<meta http-equiv="refresh" content="1;url=/accueil">';
+        $mailExp->send();
+        echo '<meta http-equiv="refresh" content="0;url=/offers">';
     } catch (Exception $e) {
-        echo "<div class='alert alert-danger text-center'>Erreur lors de l'envoi du mail : {$mail->ErrorInfo}</div>";
+        echo "<div class='alert alert-danger text-center'>Erreur mail utilisateur : {$mailExp->ErrorInfo}</div>";
+    }
+
+    $mailCompany = new PHPMailer(true);  // envoi du mail à la company selon son id/email
+    try {
+        $mailCompany->isSMTP();
+        $mailCompany->Host = 'smtp.gmail.com';
+        $mailCompany->SMTPAuth = true;
+        $mailCompany->Username = 'seghiriahmed9@gmail.com';
+        $mailCompany->Password = 'nbjplfluxfyrjken'; // mot de passe d’application Gmail
+        $mailCompany->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mailCompany->Port = 465;
+        $mailCompany->CharSet = 'UTF-8';
+        $mailCompany->Encoding = 'base64';
+
+        $mailCompany->setFrom($userApply['email'], $userApply['nom'] . ' ' . $userApply['prenom']);
+        $mailCompany->addAddress($companyEmail); // destinataire : company
+        $mailCompany->Subject = "Nouvelle candidature pour votre offre : {$offerApply['title']}";
+        $mailCompany->Body = $messageCompany;
+
+        // Ajouter le CV en pièce jointe si présent
+        if (!empty($userApply['cv_pdf']) && file_exists(__DIR__ . '/../uploads/cv/' . $userApply['cv_pdf'])) {
+            $mailCompany->addAttachment(__DIR__ . '/../uploads/cv/' . $userApply['cv_pdf'], 'CV_' . $userApply['nom'] . '.pdf');
+        }
+        // file_exists() vérifie que le fichier existe réellement sur ton serveur.
+        // addAttachment() permet de joindre le fichier au mail. Le deuxième paramètre est le nom sous lequel il apparaîtra pour le destinataire.
+
+        $mailCompany->SMTPOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true,
+            ]
+        ];
+
+        $offerModel->incrementParticipant($id);
+
+        $mailCompany->send();
+        echo '<meta http-equiv="refresh" content="0;url=/offers">';
+    } catch (Exception $e) {
+        echo "<div class='alert alert-danger text-center'>Erreur mail utilisateur : {$mailCompany->ErrorInfo}</div>";
     }
 }

@@ -143,14 +143,12 @@ class OfferController
 
     public function addOffers()
     {
-        // Vérification basique des champs requis
         if (
             !empty($_POST['inputTitre']) &&
             !empty($_POST['inputDescription']) &&
             !empty($_POST['inputMission']) &&
             !empty($_POST['inputAdresse']) &&
             !empty($_POST['inputPoste']) &&
-            !empty($_POST['inputEntreprise']) &&
             !empty($_POST['inputContrat']) &&
             !empty($_POST['inputTechnologie']) &&
             !empty($_POST['inputPositif']) &&
@@ -158,6 +156,17 @@ class OfferController
             !empty($_POST['inputImage'])
         ) {
             try {
+                $userId = $_SESSION["new_id"];
+
+                // ✅ Récupère la company associée à ce user
+                $companyModel = new Company();
+                $companyId = $companyModel->getCompanyIdByUserId($userId);
+
+                if (!$companyId) {
+                    echo "Aucune entreprise associée à cet utilisateur.";
+                    return;
+                }
+
                 $offer = new Offer();
 
                 $offer->setTitle($_POST['inputTitre']);
@@ -165,7 +174,7 @@ class OfferController
                 $offer->setMission($_POST['inputMission']);
                 $offer->setLocation($_POST['inputAdresse']);
                 $offer->setCategory($_POST['inputPoste']);
-                $offer->setId_company((int) $_POST['inputEntreprise']);
+                $offer->setId_company($companyId);
                 $offer->setEmployment_type_id((int) $_POST['inputContrat']);
                 $offer->setTechnologies($_POST['inputTechnologie']);
                 $offer->setBenefits($_POST['inputPositif']);
@@ -173,7 +182,6 @@ class OfferController
                 $offer->setImage_url($_POST['inputImage']);
 
                 if ($offer->addOffers()) {
-                    // Redirection vers la liste des offres
                     header("Location: /offers");
                     exit;
                 } else {

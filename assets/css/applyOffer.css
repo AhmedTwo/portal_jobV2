@@ -66,40 +66,6 @@
     font-style: italic;
 }
 
-/* Section upload */
-.upload-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Champ fichier */
-.file-field {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Input file */
-.file-input {
-    padding: 12px 15px;
-    border: 2px dashed #007bff;
-    border-radius: 10px;
-    background: #f8f9ff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-}
-
-.file-input:hover {
-    background: #e6f0ff;
-    border-color: #0056b3;
-}
-
-.file-input:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
-}
-
 /* Bouton d'envoi */
 .send-btn {
     background: linear-gradient(45deg, #606af1, #20c997);
@@ -108,13 +74,14 @@
     border: none;
     border-radius: 25px;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 5px;
     align-self: center;
     box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+    margin-top: 2%;
 }
 
 .send-btn:hover {
@@ -126,6 +93,7 @@
 .send-btn:active {
     transform: translateY(0);
 }
+
 
 /* responsive fait par chat gpt car je ne connais et comprends pas */
 

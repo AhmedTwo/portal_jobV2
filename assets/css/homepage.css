@@ -219,7 +219,7 @@ body {
 
 .pres-ul li {
   padding: 1.2rem 1.8rem;
-  background: rgba(226, 51, 51, 0.199);
+  background: rgba(240, 158, 158, 0.199);
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.712);
   font-size: 1rem;
@@ -231,23 +231,23 @@ body {
 }
 
 .pres-ul li:nth-child(1) {
-  border-left-color: red;
-  border-right-color: red;
+  border-left-color: rgb(45, 226, 211);
+  border-right-color: rgb(45, 226, 211);
 } 
 
 .pres-ul li:nth-child(2) {
-  border-left-color: #8b5cf6;
-  border-right-color: #8b5cf6;
+  border-left-color: rgb(20, 44, 252);
+  border-right-color: rgb(20, 44, 252);
 }
 
 .pres-ul li:nth-child(3) {
-  border-left-color: red;
-  border-right-color: red;
+  border-left-color: rgb(45, 226, 211);
+  border-right-color: rgb(45, 226, 211);
 }
 
 .pres-ul li:nth-child(4) {
-  border-left-color: #8b5cf6;
-  border-right-color: #8b5cf6;
+  border-left-color: rgb(20, 44, 252);
+  border-right-color: rgb(20, 44, 252);
 }
 
 /* Responsive */

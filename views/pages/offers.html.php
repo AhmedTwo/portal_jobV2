@@ -33,7 +33,8 @@ $favoriteModel = new Favorite();
             <!-- Carte gauche -->
             <div class="offer-card">
                 <?php if (!empty($offer["company_logo"])): ?>
-                    <a href="offers/offerCompany/<?= $offer["id_company"] ?>">
+                    <a href="offers/offerCompany/<?= $offer["id_company"] ?>" style="text-decoration: none; text-align: center;">
+                        <h3>LOGO SOCIÉTÉ</h3>
                         <img src="<?= htmlspecialchars($offer["company_logo"]) ?>" alt="Logo entreprise">
                     </a>
                 <?php endif; ?>
@@ -77,40 +78,4 @@ $favoriteModel = new Favorite();
         </div>
     <?php endforeach; ?>
 
-    <?php if (count($offers) > 4): ?>
-        <button id="showMoreBtn" class="btn-details" style="margin-top: 2rem;">Voir plus</button>
-    <?php endif; ?>
 </main>
-
-<script>
-    // Sélection des éléments
-    const showMoreBtn = document.getElementById('showMoreBtn');
-    const offerRows = document.querySelectorAll('.offer-row');
-
-    // Afficher uniquement les 4 premières offres
-    let shown = 4;
-    offerRows.forEach((row, index) => {
-        if (index >= shown) {
-            row.style.display = 'none';
-        }
-    });
-
-    // Révéler 4 offres supplémentaires à chaque clic
-    showMoreBtn?.addEventListener('click', () => {
-        let revealed = 0;
-
-        offerRows.forEach((row, index) => {
-            if (index >= shown && revealed < 4) {
-                row.style.display = 'flex';
-                revealed++;
-            }
-        });
-
-        shown += revealed;
-
-        // Masquer le bouton si tout est affiché
-        if (shown >= offerRows.length) {
-            showMoreBtn.style.display = 'none';
-        }
-    });
-</script>

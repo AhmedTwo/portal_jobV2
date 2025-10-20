@@ -22,7 +22,6 @@ function sendMail(string $destinataire, string $login, string $password): bool
     Vous retrouvez ci-joint vos identifiants de connexion à notre plateforme :<br><br>
     <strong>Email :</strong> {$login}<br>
     <strong>Mot de passe :</strong> {$password}<br><br>
-    Je vous invite à modifier votre mot de passe sur votre page Profil une fois connecté si vous le souhaitez <br><br>
     Cordialement,<br>L'équipe Portal_Job.
     ";
 
@@ -37,8 +36,8 @@ function sendMail(string $destinataire, string $login, string $password): bool
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'ajc95ajc@gmail.com';
-        $mail->Password = 'csyc eevh mqki ozbw'; // ⚠️ A mettre en variable d'environnement
+        $mail->Username = 'seghiriahmed9@gmail.com';
+        $mail->Password = 'nbjplfluxfyrjken'; // ⚠️ A mettre en variable d'environnement
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -52,7 +51,7 @@ function sendMail(string $destinataire, string $login, string $password): bool
         );
 
         // Infos expéditeur/destinataire
-        $mail->setFrom('ajc95ajc@gmail.com', 'Portal_Job');
+        $mail->setFrom('seghiriahmed9@gmail.com', 'Portal_Job');
         $mail->addAddress($destinataire); // Utiliser le vrai destinataire
         // $mail->addAddress('seghiriahmed9@gmail.com'); // Pour test
 

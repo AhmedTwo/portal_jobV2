@@ -311,9 +311,6 @@ class UserController
             // // -strlen calcule la longueur de la chaîne // - devant strlen(...) signifie : "pars depuis la fin".
 
             // Création des dossiers s'ils n'existent pas
-            if (!is_dir('uploads/cv')) {
-                mkdir('uploads/cv', 0777, true);
-            }
             if (!is_dir('uploads/photos')) {
                 mkdir('uploads/photos', 0777, true);
             }

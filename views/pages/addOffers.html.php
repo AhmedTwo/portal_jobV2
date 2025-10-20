@@ -32,16 +32,6 @@
     </div>
 
     <div class="divAdd">
-      <label for="inputEntreprise" >SOCIETE</label>
-      <select id="inputEntreprise" name="inputEntreprise" class="select" required>
-        <option value="" disabled selected>-- Sélectionnez une entreprise --</option>
-        <?php foreach ($NameCompany as $ligne): ?>
-          <option value="<?= $ligne["id_company"]; ?>"><?= htmlspecialchars($ligne["name"]) ?></option>
-        <?php endforeach; ?>
-      </select>
-    </div>
-
-    <div class="divAdd">
       <label for="inputContrat" >CONTRAT</label>
       <select id="inputContrat" name="inputContrat" class="select" required>
         <option value="" disabled selected>-- Sélectionnez un contrat --</option>
