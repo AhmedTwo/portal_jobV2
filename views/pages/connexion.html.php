@@ -9,6 +9,7 @@ die; -->
 
 <link rel="stylesheet" href="/assets/css/connexion.css">
 
+<!-- <div id="ball"></div> test javascript solo -->
 <div id="containerFirst">
     <img src='/assets/images/imagePortal.png' alt='fond logo portal job' class='background-logo'>
     <div id="containerSecond">
@@ -46,3 +47,32 @@ die; -->
 
     </div>
 </div>
+
+<!-- <style>
+        #ball {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            position: relative;
+            left: 20px;
+            top: 50px;
+            border-radius: 50%;
+        }
+    </style>
+
+<script>
+    let ball = document.getElementById("ball");
+    let posX = 20;  // le left du style
+    let posY = 50;  // le top du style
+
+    function moovBall () {
+
+        posX += vitesseX;
+
+        if (posX + ball.offsetWidth > window.innerWidth) {
+        // que faire si elle touche le bord ?
+        ball.style.left = posX + "px";
+        }
+
+    }
+</script> -->

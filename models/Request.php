@@ -87,9 +87,23 @@ class Request
     public function getById($id)
     {
         $query = "
-            SELECT *
+            SELECT 
+                r.id,
+                r.title,
+                r.description,
+                r.type,
+                r.status,
+                r.created_at,
+                r.user_id,
+                r.company_id,
+                u.nom as user_firstname,
+                u.prenom as user_lastname,
+                u.photo,
+                c.name as company_name,
+                c.logo as company_photo
             FROM request r
             LEFT JOIN users u ON r.user_id = u.id
+            LEFT JOIN company c ON r.company_id = c.id
             WHERE r.user_id = :id
             ORDER BY r.created_at DESC
         ";
@@ -103,7 +117,7 @@ class Request
     {
         $query = "DELETE FROM request WHERE id = :id";
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute(['id' => $id]);
+        return $stmt->execute(['id' => $id]);
     }
 
     public function updateStatus($id, $newStatus)

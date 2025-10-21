@@ -538,34 +538,30 @@ if ($segment[0] == "dashboard_company") {
     return;
 }
 
-// var_dump($segment, $methode);
-// die;
-
 if ($segment[0] == "myRequest") {
     $activePage = "myRequest";
 
+    
     $RequestController = new RequestController();
-
+    
     $id = $_SESSION['new_id'] ?? null;
-
+    
     // var_dump($id); // id de la personne connecté
     // die;
-
+    
     if (isset($segment[1]) && $segment[1] == "addMyRequest") {
-
         if ($methode === "POST") {
             $RequestController->addMyRequest(); // traite le formulaire
             return;
         }
-
         if ($methode === "GET") {
             $RequestController->addRequestForm('myRequest');  // affiche le formulaire spécifique
             return;
         }
     }
 
-    // Cas : Requête POST pour supprimer by id / donc url = request/deleteMyRequest
-    if ($methode == "POST" && isset($segment[1]) && $segment[1] == "deleteRequest") {
+    // Cas : Requête POST pour supprimer by id / donc url = myRequest/deleteMyRequest
+    if ($methode == "POST" && isset($segment[1]) && $segment[1] == "deleteMyRequest") {
 
         // var_dump($segment, $methode, $_POST);
         // die; // le code s’arrête ici UNIQUEMENT pour ce POST afin de verifier ce qu'il reçoit
@@ -578,9 +574,6 @@ if ($segment[0] == "myRequest") {
         }
     }
 
-    // var_dump($segment, $methode, $_POST);
-    // die;
-
     if ($methode == "GET" && $id !== null) {
         $RequestController->requestById($id); // Affiche les demandes de l'utilisateur connecté
         return;
@@ -592,23 +585,13 @@ if ($segment[0] == "request") {
 
     $RequestController = new RequestController();
 
-    if (isset($segment[1]) && $segment[1] == "addRequest") {
-
-        if ($methode === "GET") {
-            $RequestController->addRequestForm();  // affiche le formulaire
-            return;
-        }
-
-        if ($methode === "POST") {
-            $RequestController->addRequest(); // traite le formulaire
-            return;
-        }
-    }
-
     // Cas : Requête POST pour supprimer by id / donc url = request/deleteRequest
     if ($methode == "POST" && isset($segment[1]) && $segment[1] == "deleteRequest") {
 
         $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
+
+        // var_dump($segment, $methode, $_POST);
+        // die; 
 
         if ($id) {
             $RequestController->deleteRequest($id);
