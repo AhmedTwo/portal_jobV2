@@ -9,12 +9,14 @@ die; -->
 
 <link rel="stylesheet" href="/assets/css/connexion.css">
 
-<!-- <div id="ball"></div> test javascript solo -->
+<div id="moov">
+    <h1 class="h1Login">CONNEXION &nbsp;&nbsp;<img src='/assets/images/Portal.png' alt='fond logo porte de portal job' width="35"></h1>
+</div>
+<!-- &nbsp; me permet de faire un espace en html -->
+
 <div id="containerFirst">
     <img src='/assets/images/imagePortal.png' alt='fond logo portal job' class='background-logo'>
     <div id="containerSecond">
-        <h1 class="h1Login">CONNEXION &nbsp;&nbsp;<img src='/assets/images/Portal.png' alt='fond logo porte de portal job' width="35"></h1>
-        <!-- &nbsp; me permet de faire un espace en html -->
 
         <!-- Messages de session juste en dessous du H1 -->
         <!-- Vérifie si la variable de session "error" existe et n'est pas vide -->
@@ -48,31 +50,42 @@ die; -->
     </div>
 </div>
 
-<!-- <style>
-        #ball {
-            height: 50px;
-            width: 50px;
-            background-color: red;
+<style>
+        #moov {
+            width: fit-content; /* s’adapte au texte + image */
             position: relative;
             left: 20px;
             top: 50px;
-            border-radius: 50%;
         }
     </style>
 
 <script>
-    let ball = document.getElementById("ball");
-    let posX = 20;  // le left du style
-    let posY = 50;  // le top du style
+    let moovTitle = document.getElementById("moov");
+    let posTitle = 20;  // le left du style
 
-    function moovBall () {
+    let vitesseX = 5;
 
-        posX += vitesseX;
+    function moov() {
+        posTitle += vitesseX;
 
-        if (posX + ball.offsetWidth > window.innerWidth) {
-        // que faire si elle touche le bord ?
-        ball.style.left = posX + "px";
+        const largeurFenetre = window.innerWidth;
+        const largeurTitre = moovTitle.offsetWidth;
+
+        // si 20 + largeurTitre est superieur ou egal a largeurFenetre alors 20 devient largeurFenetre moins largeurTitre
+        // sinon si 20 est inferieur ou egal a 0 alors 20 devient 0 pour pas qu'il aille a gauche et donc fait des aller retour 
+        // grace a la diminué par lui meme
+        if (posTitle + largeurTitre >= largeurFenetre) {
+            posTitle = largeurFenetre - largeurTitre; // repositionne juste avant le bord
+            vitesseX = -vitesseX;
+        } else if (posTitle <= 0) {
+            posTitle = 0; // ne va pas en dehors à gauche
+            vitesseX = -vitesseX;
         }
 
-    }
-</script> -->
+        moovTitle.style.left = posTitle + "px";
+        requestAnimationFrame(moov);
+        }
+
+    requestAnimationFrame(moov);
+
+</script>
